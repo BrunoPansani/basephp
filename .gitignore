@@ -1,2 +1,9 @@
+# Composer
 vendor/
+
+# Environment Variables
 .env
+
+# PHPUnit
+/.phpunit.cache
+.phpunit.result.cache
