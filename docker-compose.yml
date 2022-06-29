@@ -1,0 +1,29 @@
+version: '3.5'
+
+networks:
+  development:
+
+services:
+  site:
+    build:
+      context: .
+      dockerfile: docker/nginx.dockerfile
+    container_name: ${APP_NAME}-nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html:delegated
+    depends_on:
+      - php
+    networks:
+      - development
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php.dockerfile
+    container_name: ${APP_NAME}-php
+    volumes:
+      - ./:/var/www/html:delegated
+    networks:
+      - development
